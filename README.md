@@ -1,2 +1,2 @@
 # Cringe
- That's cringe, bruh
+ That's cringe, bruh ЪЕЪ
