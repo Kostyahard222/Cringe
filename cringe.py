@@ -172,10 +172,7 @@ class Adrenaline(Item):
 class Player(Entity):
     name = ["You", "Yours"]
 
-    invName = {'Bandage': Bandage, 'Medkit': Medkit, 'Adrenaline': Adrenaline}
     invArr = []
-    invDesc = {'Bandage': '"Heals 10 hp"', 'Medkit': '"Heals 25 hp, can stop bleeding and heal fractures"',
-               'Adrenaline': '"Maxes out your hp and double the mana income for this fight"'}
 
     def initmovedict(self):
         self.movedict = {
