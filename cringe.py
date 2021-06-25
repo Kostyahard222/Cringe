@@ -5,6 +5,7 @@ from entities.enemies.testenemy import *
 from entities.player import *
 from random import randint
 
+
 # prints stats of the fight(e.x Enemy Attacks!)
 def printstats(entity1, entity2):
     if entity2.move == 'attack':
@@ -13,7 +14,6 @@ def printstats(entity1, entity2):
             print(entity1.name[Namecase.obj], 'blocked', str(entity1.defense), 'damage.', end=' ')
 
     print(entity1.name[Namecase.obj], 'has', entity1.health, 'hp')
-
 
 
 player = Player()
