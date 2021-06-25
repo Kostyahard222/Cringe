@@ -1,5 +1,6 @@
 from entities.entity import *
 
+
 class TestEnemy(Entity):
     name = ["Enemy", "Enemy's"]
 

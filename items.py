@@ -13,6 +13,7 @@ class Item:
     def use(self, entity):
         print("test item")
 
+
 class Healer(Item):
     heal = 1
 
@@ -24,10 +25,12 @@ class Healer(Item):
             print('You have healed', self.heal, 'hp, you are now on', entity.health,
                   'hp')
 
+
 class Bandage(Healer):
     name = 'Bandage'
     heal = 10
     description = '"Heals 10 hp"'
+
 
 class Medkit(Healer):
     name = 'Medkit'

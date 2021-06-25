@@ -1,5 +1,6 @@
 from random import randint
 
+
 # class for base entities(enemy, player, etc)
 class Entity:
     name = ["Entity", "Entity's"]  # name in subjective and possessive cases
@@ -91,7 +92,7 @@ class Entity:
 
     # subtracts certain amount of mana. if there's not enough mana retruns -1, else returns 0
     def paymana(self, cost):
-        if (self.mana < cost):
+        if self.mana < cost:
             return -1
         else:
             return 0

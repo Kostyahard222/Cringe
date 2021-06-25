@@ -1,9 +1,6 @@
-from items import *
-from entities.entity import *
 from namecase import *
 from entities.enemies.testenemy import *
 from entities.player import *
-from random import randint
 
 
 # prints stats of the fight(e.x Enemy Attacks!)
