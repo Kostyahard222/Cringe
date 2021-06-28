@@ -32,10 +32,6 @@ class Entity:
     def health(self, value):
         self._health = max(min(value, self.healthmax), 0)
 
-    @health.deleter
-    def health(self):
-        del self._health
-
     @property
     def mana(self):
         return self._mana
@@ -43,10 +39,6 @@ class Entity:
     @mana.setter
     def mana(self, value):
         self._mana = max(min(value, self.manamax), 0)
-
-    @mana.deleter
-    def mana(self):
-        del self._mana
 
     # initializes movedict
     def initmovedict(self):
@@ -57,6 +49,7 @@ class Entity:
 
     # activates move from movedict
     def activatemove(self, move):
+        move = move.lower()
         for i in self.movedict:
             if move == i:
                 self.move = move
@@ -78,7 +71,7 @@ class Entity:
         self.blockpercentage = 0
         self.breakpercentage = 0
         self.move = ""
-        self.mana = min(self.manamax, self.mana + self.manaincome)
+        self.mana += self.manaincome
 
     # apples certain things, like damage, defense, etc. called right after all moves activation
     def applymoves(self, enemy):
@@ -90,12 +83,12 @@ class Entity:
             self.isdead = True
             self.deathrattle()
 
-    # subtracts certain amount of mana. if there's not enough mana retruns -1, else returns 0
+    # subtracts certain amount of mana. if there's not enough mana retruns -1, else returns 1
     def paymana(self, cost):
         if self.mana < cost:
             return -1
         else:
-            return 0
+            return 1
 
     def deathrattle(self):
         print('Entity has died')
