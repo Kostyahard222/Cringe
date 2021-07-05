@@ -3,7 +3,7 @@ from items import *
 
 class Player(Entity):
     name = ["You", "Yours"]
-
+    immune = []
     invArr = []
 
     def initmovedict(self):
@@ -20,7 +20,7 @@ class Player(Entity):
         self.invArr.append(Adrenaline(2))
 
     def __init__(self):
-        Entity.__init__(self, 50, 50, 9, 12, 12)
+        Entity.__init__(self, 999, 999, 9, 12, 12)
         self.initinventory()
 
     def deathrattle(self):

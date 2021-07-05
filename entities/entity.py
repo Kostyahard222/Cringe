@@ -1,4 +1,5 @@
 from random import randint
+from effects import *
 
 
 # class for base entities(enemy, player, etc)
@@ -9,9 +10,11 @@ class Entity:
     move = ""  # name of move you did in this turn
     breakpercentage = 0  # percentage of enemy's defense to be broken (ex. if it's 0.5 enemy's defense is halved)
     blockpercentage = 0  # percentage of damage to be blocked in this turn (adds up to defense)
+    immune=[]
     _mana = 0
     manaincome = 1
     isdead = False
+    effects = []
 
     def __init__(self, health, healthmax, attackmin, attackmax, attackcrit, blockmin=5, blockdelta=0.2, manamax=10):
         self.healthmax = healthmax
@@ -22,6 +25,7 @@ class Entity:
         self.blockmin = blockmin
         self.blockdelta = blockdelta
         self.manamax = manamax
+        self.effects = []
         self.initmovedict()
 
     @property
@@ -72,6 +76,8 @@ class Entity:
         self.breakpercentage = 0
         self.move = ""
         self.mana += self.manaincome
+        for eff in self.effects:
+            eff.apply(self)
 
     # apples certain things, like damage, defense, etc. called right after all moves activation
     def applymoves(self, enemy):
@@ -79,6 +85,15 @@ class Entity:
         self.defense *= (1 - enemy.breakpercentage)
         self.defense = int(self.defense)
         self.health -= max(enemy.damage - self.defense, 0)
+        if enemy.damage != 0 and (randint(1,10) < 8):
+            try:
+                eff = self.effects.index(Bleeding)
+            except ValueError:
+                pass
+            else:
+                del eff
+            self.effects.append(Bleeding(4))
+
         if self.health == 0:
             self.isdead = True
             self.deathrattle()
